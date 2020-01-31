@@ -1,0 +1,23 @@
+Query the two cities in STATION with the shortest and longest CITY names, as well as their respective 
+lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, 
+choose the one that comes first when ordered alphabetically.
+
+select * 
+from (select distinct city, length(city) from station order by length(city) asc, city asc) 
+where rownum = 1
+union
+select * 
+from (select distinct city, length(city) from station order by length(city) desc, city desc) 
+where rownum = 1;
+
+---
+
+Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result 
+cannot contain duplicates.
+
+select distinct city 
+from station 
+where city like 'A%' or city like 'E%' or city like 'I%' or city like 'O%' or city like 'U%';
+
+---
+
